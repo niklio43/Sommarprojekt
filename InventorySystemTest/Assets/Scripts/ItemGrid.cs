@@ -18,7 +18,7 @@ public class ItemGrid : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
     }
 
-    public Vector2Int GetTileGrídPosition(Vector2 mousePosition)
+    public Vector2Int GetTileGridPosition(Vector2 mousePosition)
     {
         positionOnTheGrid.x = mousePosition.x - rectTransform.position.x;
         positionOnTheGrid.y = rectTransform.position.y - mousePosition.y;

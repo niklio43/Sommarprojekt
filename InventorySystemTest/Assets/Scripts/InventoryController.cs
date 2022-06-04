@@ -11,6 +11,6 @@ public class InventoryController : MonoBehaviour
         if(selectedItemGrid == null) { return; }
 
         if(Input.GetMouseButtonDown(0))
-            Debug.Log(selectedItemGrid.GetTileGrídPosition(Input.mousePosition));
+            Debug.Log(selectedItemGrid.GetTileGridPosition(Input.mousePosition));
     }
 }
