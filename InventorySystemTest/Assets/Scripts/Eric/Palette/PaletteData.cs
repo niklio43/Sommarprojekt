@@ -7,13 +7,13 @@ using UnityEngine;
 [Serializable]
 public class PaletteData
 {
-    public string id;
+    [HideInInspector] public string id;
     public string name;
     public Module[] modules;
 
     public PaletteData(int size, string name = "New Palette")
     {
-        id = System.Guid.NewGuid().ToString();
+        id = Guid.NewGuid().ToString();
         this.name = name;
         modules = new Module[size];
     }
@@ -22,6 +22,8 @@ public class PaletteData
 [Serializable]
 public class Module
 {
+    [HideInInspector] public static string mesh_path = "Assets/Assets/WFC/";
+    
     public string mesh_name;
     //public int rotation;
     //Sockets
@@ -64,7 +66,7 @@ public static class SavePaletteData
         CheckFolders();
 
         string data = JsonUtility.ToJson(palette, true);
-        System.IO.File.WriteAllText($"{path}{palette.id}.json", data);
+        File.WriteAllText($"{path}{palette.id}.json", data);
     }
 
     public static List<PaletteData> LoadPalettes()
@@ -82,5 +84,14 @@ public static class SavePaletteData
 
         return palettes;
     }
-
 }
+
+
+//Serialized Objects
+
+
+public class SerializedPaletteData : ScriptableObject
+{
+    public PaletteData data;
+}
+
