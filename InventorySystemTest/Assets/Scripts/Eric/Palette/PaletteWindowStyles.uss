@@ -1,0 +1,39 @@
+.header
+{
+	-unity-font-style: bold;
+	font-size: 20px;
+}
+
+#palette-info-container
+{
+	flex-grow: 1;
+}
+
+#create-palette
+{
+	height: 20px;
+	font-size: 20px;
+}
+
+#palettes
+{
+	width:225px;
+}
+
+Box
+{
+	flex-grow: 1;
+}
+
+TemplateContainer
+{
+	flex-grow: 1;
+	flex-direction: row;
+}
+
+#palette-list
+{
+	height: 580px;
+	-unity-text-align: middle-center;
+}
+
