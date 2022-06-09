@@ -35,8 +35,8 @@ namespace WFC.Window
         {
             CreateSerialzedPalettes();
             Button addBtn = rootVisualElement.Query<Button>("create-palette").First();
-            addBtn.clicked -= Temp;
-            addBtn.clicked += Temp;
+            addBtn.clicked -= CreatePalette;
+            addBtn.clicked += CreatePalette;
 
             ListView listView = rootVisualElement.Query<ListView>("palette-list").First();
             listView.makeItem = () => new Label();
@@ -68,12 +68,22 @@ namespace WFC.Window
                     }
       
                     Button saveButton = new Button();
-                    saveButton.clicked += Save;
                     saveButton.text = "Save";
-
                     paletteInfoBox.Add(saveButton);
 
-     
+                    saveButton.clicked += () => {
+                        Save(paletteInfo);
+                    };
+
+                    Button deleteButton = new Button();
+                    deleteButton.text = "Delete";
+                    paletteInfoBox.Add(deleteButton);
+
+                    deleteButton.clicked += () => {
+                        Delete(paletteInfo);
+                        paletteInfoBox.Clear();
+                    };
+
                 }
             };
 
@@ -91,31 +101,27 @@ namespace WFC.Window
             }
         }
 
-
-        void Temp()
+        void CreatePalette()
         {
-            PaletteData test = new PaletteData(9);
-            SavePaletteData.SaveToJSON(test);
+            PaletteData palette = new PaletteData(0);
+            SavePaletteData.SavePalette(palette);
             CreatePaletteList();
         }
 
-        void Save()
+        void Save(SerializedPaletteData data)
         {
-            foreach (SerializedPaletteData data in palettes) {
-                SavePaletteData.SaveToJSON(data.data);
+            foreach (Module module in data.data.modules) {
+                module.UpdateData();
             }
+
+            SavePaletteData.SavePalette(data.data);
             CreatePaletteList();
         }
 
-        void Remove(SerializedPaletteData data)
+        void Delete(SerializedPaletteData data)
         {
-            //palettes.Remove(data);
-
-            Debug.Log(data);
-
-            //CreatePaletteList();
+            SavePaletteData.DeletePalette(data.data);
+            CreatePaletteList();
         }
-        //Box cardInfoBox = rootVisualElement.Query<Box>("card-info").First();
     }
-
 }
