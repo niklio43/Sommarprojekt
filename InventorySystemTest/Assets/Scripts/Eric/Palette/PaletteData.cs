@@ -23,7 +23,7 @@ public class PaletteData
 [Serializable]
 public class Module
 {
-    public Mesh mesh;
+    public GameObject mesh;
     [HideInInspector] public string mesh_name;
     //public int rotation;
 
