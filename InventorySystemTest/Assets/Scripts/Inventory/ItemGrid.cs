@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class ItemGrid : MonoBehaviour
 {
-    public const float tileSizeWidth = 32;
-    public const float tileSizeHeight = 32;
+    public const float tileSizeWidth = 64;
+    public const float tileSizeHeight = 64;
 
     InventoryItem[,] inventoryItemSlot;
 
@@ -56,7 +56,7 @@ public class ItemGrid : MonoBehaviour
 
     public Vector2Int GetTileGridPosition(Vector2 mousePosition)
     {
-        float scaleFactor = FindObjectOfType<Canvas>().scaleFactor;
+        float scaleFactor = gameObject.transform.parent.gameObject.GetComponent<Canvas>().scaleFactor;
         positionOnTheGrid.x = mousePosition.x - rectTransform.position.x;
         positionOnTheGrid.y = rectTransform.position.y - mousePosition.y;
 

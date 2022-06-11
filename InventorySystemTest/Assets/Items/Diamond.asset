@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94bc6b24a3873984aa728af550f2c83c, type: 3}
+  m_Script: {fileID: 11500000, guid: 7dae75a082fbde6428de5cee65b5401d, type: 3}
   m_Name: Diamond
   m_EditorClassIdentifier: 
   width: 1
   height: 1
+  type: 3
   itemIcon: {fileID: 21300000, guid: e755f11f1d9e75f478c113eb7f22cf58, type: 3}
+  description: Rare mineral.

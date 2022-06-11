@@ -69,7 +69,7 @@ public class InventoryController : MonoBehaviour
     }
 
     //Call when random item drop is wanted
-    void InsertRandomItem()
+    public void InsertRandomItem()
     {
         CreateRandomItem();
         InventoryItem itemToInsert = selectedItem;
