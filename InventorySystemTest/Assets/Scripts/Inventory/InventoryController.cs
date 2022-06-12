@@ -68,6 +68,7 @@ public class InventoryController : MonoBehaviour
         selectedItem.Rotate();
     }
 
+    //Make so item is dropped on ground first
     //Call when random item drop is wanted
     public void InsertRandomItem()
     {
