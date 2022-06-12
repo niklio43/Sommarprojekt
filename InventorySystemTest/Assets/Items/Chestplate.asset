@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfbda899b6adffa4b8cac9f435ac7ad8, type: 3}
   m_Name: Chestplate
   m_EditorClassIdentifier: 
+  Id: 0
   width: 2
   height: 2
   type: 0
@@ -20,6 +21,12 @@ MonoBehaviour:
 
 
     Increases overall defense by 10'
-  armorType: 1
-  physicalDefenseBonus: 10
-  magicDefenseBonus: 10
+  buffs:
+  - attribute: 0
+    value: 0
+    min: 5
+    max: 12
+  - attribute: 1
+    value: 0
+    min: 4
+    max: 20
