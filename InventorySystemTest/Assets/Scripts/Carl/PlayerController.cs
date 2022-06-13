@@ -5,17 +5,23 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    ControlsActionMap movement;
-
+    Rigidbody rigid;
     float moveSpeed = 10f;
     Vector3 forward, right;
-    InputAction forwardAction;
     InputAction rightAction;
+    InputAction forwardAction;
+    public static ControlsActionMap movement;
 
-    void Start()
+    private void Awake()
     {
         movement = new ControlsActionMap();
         movement.Enable();
+    }
+
+    void Start()
+    {
+        rigid = GetComponent<Rigidbody>();
+        
         forwardAction = movement.PlayerMovement.Forward;
         rightAction = movement.PlayerMovement.Right;
         forward = Camera.main.transform.forward;

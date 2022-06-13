@@ -92,6 +92,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "DebugControls",
+            "id": "e54788ef-ea56-4ee7-921d-5ef87db1e8c6",
+            "actions": [
+                {
+                    "name": "CameraToggle",
+                    "type": "Button",
+                    "id": "5e4f5f83-ef18-42d9-a9d2-ac9294d156aa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "eee0fefe-f643-4b48-8d87-d3b8b709cc9a",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

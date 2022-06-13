@@ -114,6 +114,34 @@ public partial class @ControlsActionMap : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""DebugControls"",
+            ""id"": ""e54788ef-ea56-4ee7-921d-5ef87db1e8c6"",
+            ""actions"": [
+                {
+                    ""name"": ""CameraToggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""5e4f5f83-ef18-42d9-a9d2-ac9294d156aa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""eee0fefe-f643-4b48-8d87-d3b8b709cc9a"",
+                    ""path"": ""<Keyboard>/g"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraToggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -122,6 +150,9 @@ public partial class @ControlsActionMap : IInputActionCollection2, IDisposable
         m_PlayerMovement = asset.FindActionMap("PlayerMovement", throwIfNotFound: true);
         m_PlayerMovement_Forward = m_PlayerMovement.FindAction("Forward", throwIfNotFound: true);
         m_PlayerMovement_Right = m_PlayerMovement.FindAction("Right", throwIfNotFound: true);
+        // DebugControls
+        m_DebugControls = asset.FindActionMap("DebugControls", throwIfNotFound: true);
+        m_DebugControls_CameraToggle = m_DebugControls.FindAction("CameraToggle", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -218,9 +249,46 @@ public partial class @ControlsActionMap : IInputActionCollection2, IDisposable
         }
     }
     public PlayerMovementActions @PlayerMovement => new PlayerMovementActions(this);
+
+    // DebugControls
+    private readonly InputActionMap m_DebugControls;
+    private IDebugControlsActions m_DebugControlsActionsCallbackInterface;
+    private readonly InputAction m_DebugControls_CameraToggle;
+    public struct DebugControlsActions
+    {
+        private @ControlsActionMap m_Wrapper;
+        public DebugControlsActions(@ControlsActionMap wrapper) { m_Wrapper = wrapper; }
+        public InputAction @CameraToggle => m_Wrapper.m_DebugControls_CameraToggle;
+        public InputActionMap Get() { return m_Wrapper.m_DebugControls; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(DebugControlsActions set) { return set.Get(); }
+        public void SetCallbacks(IDebugControlsActions instance)
+        {
+            if (m_Wrapper.m_DebugControlsActionsCallbackInterface != null)
+            {
+                @CameraToggle.started -= m_Wrapper.m_DebugControlsActionsCallbackInterface.OnCameraToggle;
+                @CameraToggle.performed -= m_Wrapper.m_DebugControlsActionsCallbackInterface.OnCameraToggle;
+                @CameraToggle.canceled -= m_Wrapper.m_DebugControlsActionsCallbackInterface.OnCameraToggle;
+            }
+            m_Wrapper.m_DebugControlsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @CameraToggle.started += instance.OnCameraToggle;
+                @CameraToggle.performed += instance.OnCameraToggle;
+                @CameraToggle.canceled += instance.OnCameraToggle;
+            }
+        }
+    }
+    public DebugControlsActions @DebugControls => new DebugControlsActions(this);
     public interface IPlayerMovementActions
     {
         void OnForward(InputAction.CallbackContext context);
         void OnRight(InputAction.CallbackContext context);
+    }
+    public interface IDebugControlsActions
+    {
+        void OnCameraToggle(InputAction.CallbackContext context);
     }
 }
