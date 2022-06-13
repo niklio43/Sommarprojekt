@@ -5,84 +5,94 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-[Serializable]
-public class PaletteData
+namespace WFC.Data
 {
-    [HideInInspector] public string id;
-    public string name;
-    public Module[] modules;
-
-    public PaletteData(int size, string name = "New Palette")
+    [Serializable]
+    public class PaletteData
     {
-        id = Guid.NewGuid().ToString();
-        this.name = name;
-        modules = new Module[size];
+        [HideInInspector] public string id;
+        public string name;
+        public ModuleData[] modules;
+
+        public PaletteData(int size, string name = "New Palette")
+        {
+            id = Guid.NewGuid().ToString();
+            this.name = name;
+            modules = new ModuleData[size];
+        }
+
+        public Dictionary<string, Prototype> GetPrototypes()
+        {
+            Dictionary<string, Prototype> prototypes = new Dictionary<string, Prototype>();
+            foreach (ModuleData module in modules) {
+                prototypes.Add($"{module.id}_0", new Prototype($"{id}_0", 0, module.posX, module.negX, module.posZ, module.negZ));
+                prototypes.Add($"{module.id}_1", new Prototype($"{id}_1", 0, module.negZ, module.posZ, module.posX, module.negX));
+                prototypes.Add($"{module.id}_2", new Prototype($"{id}_2", 0, module.negX, module.posX, module.negZ, module.posZ));
+                prototypes.Add($"{module.id}_3", new Prototype($"{id}_3", 0, module.posZ, module.negZ, module.negX, module.posX));
+            }
+
+            return prototypes;
+        }
     }
+
+    [Serializable]
+    public class ModuleData
+    {
+        public string name;
+        public GameObject gameobject;
+        [HideInInspector] public string id;
+        [HideInInspector] public string file_path;
+
+        public string posX, negX;
+        //public string posY, negY;
+        public string posZ, negZ;
+
+        public ModuleData(string file_path, string posX, string negX, string posZ, string negZ)
+        {
+            this.file_path = file_path;
+            this.posX = posX;
+            this.negX = negX;
+            this.posZ = posZ;
+            this.negZ = negZ;
+        }
+
+        public void UpdateData()
+        {
+            file_path = AssetDatabase.GetAssetPath(gameobject);
+        }
+    }
+
+    [Serializable]
+    public class Prototype
+    {
+        public readonly string id;
+        public readonly int rotation; 
+
+        public readonly string posX, negX;
+        //public readonly string posY, negY;
+        public readonly string posZ, negZ;
+
+        public List<string> valid_posX, valid_negX;
+        public List<string> valid_posZ, valid_negZ;
+
+        public Prototype(string id, int rotation, string posX, string negX, string posZ, string negZ)
+        {
+            this.id = id;
+            this.rotation = rotation;
+            this.posX = posX;
+            this.negX = negX;
+            this.posZ = posZ;
+            this.negZ = negZ;
+        }
+    }
+
+    //Serialized Objects
+
+
+    public class SerializedPaletteData : ScriptableObject
+    {
+        public PaletteData data;
+    }
+
 }
-
-[Serializable]
-public class Module
-{
-    public GameObject mesh;
-    [HideInInspector] public string mesh_name;
-
-    public string posX, negX;
-    //public string posY, negY;
-    public string posZ, negZ;
-    [HideInInspector] public Prototype[] prototypes;
-
-    public Module(string mesh_name, string posX, string negX, string posZ, string negZ)
-    {
-        this.mesh_name = mesh_name;
-        this.posX = posX;
-        this.negX = negX;
-        this.posZ = posZ;
-        this.negZ = negZ;
-    }
-
-    public void UpdateData()
-    {
-        mesh_name = AssetDatabase.GetAssetPath(mesh);
-        CreatePrototypes();
-    }
-
-    void CreatePrototypes()
-    {
-        prototypes = new Prototype[4];
-
-        prototypes[0] = new Prototype(0, posX, negX, posZ, negZ);
-        prototypes[1] = new Prototype(1, negZ, posZ, posX, negX);
-        prototypes[2] = new Prototype(2, negX, posX, negZ, posZ);
-        prototypes[3] = new Prototype(3, posZ, negZ, negX, posX);
-    }
-}
-
-[Serializable]
-public class Prototype
-{
-    public int rotation;
-
-    public string posX, negX;
-    //public string posY, negY;
-    public string posZ, negZ;
-
-    public Prototype(int rotationIndex, string posX, string negX, string posZ, string negZ)
-    {
-        rotation = rotationIndex;
-        this.posX = posX;
-        this.negX = negX;
-        this.posZ = posZ;
-        this.negZ = negZ;
-    }
-}
-
-//Serialized Objects
-
-
-public class SerializedPaletteData : ScriptableObject
-{
-    public PaletteData data;
-}
-
-
 
