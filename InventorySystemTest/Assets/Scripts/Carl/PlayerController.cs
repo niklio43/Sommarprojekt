@@ -30,7 +30,18 @@ public class PlayerController : MonoBehaviour
         right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
     }
 
-    private void FixedUpdate()
+    void Update()
+    {
+        RaycastHit hit;
+        Physics.Raycast(transform.position, Vector3.down, out hit, 2);
+        if(transform.position.y - hit.point.y < 1 || transform.position.y - hit.point.y > 1)
+        {
+            Vector3 groundPos = new Vector3(transform.position.x, hit.point.y + 1, transform.position.z);
+            transform.position = Vector3.Lerp(transform.position, groundPos, (10 / (transform.position.y - groundPos.y)) * Time.deltaTime);
+        }
+    }
+
+    void FixedUpdate()
     {
         Move();
     }

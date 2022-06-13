@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 556008702}
   - component: {fileID: 556008701}
   - component: {fileID: 556008700}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Nose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -766,7 +766,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2116287233}
-  following: 0
   offset: {x: -15, y: 13, z: -15}
   camSize: 10
 --- !u!1 &1260713982
@@ -1352,7 +1351,7 @@ GameObject:
   - component: {fileID: 2116287240}
   - component: {fileID: 2116287234}
   - component: {fileID: 2116287236}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
