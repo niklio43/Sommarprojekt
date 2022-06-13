@@ -17,6 +17,7 @@ namespace WFC
             while (!FullyCollapsed(grid)) {
 
                 Cell minEntropy = GetMinEntropyCell(grid);
+                Debug.Log(minEntropy.available.Count);
                 minEntropy.CollapseCell();
 
                 PropagateCollapse(minEntropy.coords, grid);

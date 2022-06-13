@@ -26,9 +26,9 @@ namespace WFC.Data
             Dictionary<string, Prototype> prototypes = new Dictionary<string, Prototype>();
             foreach (ModuleData module in modules) {
                 prototypes.Add($"{module.id}_0", new Prototype(module.gameobject, $"{id}_0", 0, module.posX, module.negX, module.posZ, module.negZ));
-                prototypes.Add($"{module.id}_1", new Prototype(module.gameobject, $"{id}_1", 0, module.negZ, module.posZ, module.posX, module.negX));
-                prototypes.Add($"{module.id}_2", new Prototype(module.gameobject, $"{id}_2", 0, module.negX, module.posX, module.negZ, module.posZ));
-                prototypes.Add($"{module.id}_3", new Prototype(module.gameobject, $"{id}_3", 0, module.posZ, module.negZ, module.negX, module.posX));
+                prototypes.Add($"{module.id}_1", new Prototype(module.gameobject, $"{id}_1", 1, module.negZ, module.posZ, module.posX, module.negX));
+                prototypes.Add($"{module.id}_2", new Prototype(module.gameobject, $"{id}_2", 2, module.negX, module.posX, module.negZ, module.posZ));
+                prototypes.Add($"{module.id}_3", new Prototype(module.gameobject, $"{id}_3", 3, module.posZ, module.negZ, module.negX, module.posX));
             }
 
             return prototypes;

@@ -24,8 +24,7 @@ namespace WFC
                     _temp.name = $"{x},{y}";
                     _temp.transform.parent = transform;
                     _temp.transform.position = new Vector3(x, 0, y);
-                    //_temp.transform.eulerAngles = new Vector3(0, (90 * grid[x, y].occupant.rotation), 0);
-                    Debug.Log(grid[x, y].occupant.rotation);
+                    _temp.transform.eulerAngles = new Vector3(0, (90 * grid[x, y].occupant.rotation), 0);
                 }
             }
 
