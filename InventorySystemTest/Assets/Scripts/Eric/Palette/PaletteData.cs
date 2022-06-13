@@ -25,10 +25,10 @@ namespace WFC.Data
         {
             Dictionary<string, Prototype> prototypes = new Dictionary<string, Prototype>();
             foreach (ModuleData module in modules) {
-                prototypes.Add($"{module.id}_0", new Prototype($"{id}_0", 0, module.posX, module.negX, module.posZ, module.negZ));
-                prototypes.Add($"{module.id}_1", new Prototype($"{id}_1", 0, module.negZ, module.posZ, module.posX, module.negX));
-                prototypes.Add($"{module.id}_2", new Prototype($"{id}_2", 0, module.negX, module.posX, module.negZ, module.posZ));
-                prototypes.Add($"{module.id}_3", new Prototype($"{id}_3", 0, module.posZ, module.negZ, module.negX, module.posX));
+                prototypes.Add($"{module.id}_0", new Prototype(module.gameobject, $"{id}_0", 0, module.posX, module.negX, module.posZ, module.negZ));
+                prototypes.Add($"{module.id}_1", new Prototype(module.gameobject, $"{id}_1", 0, module.negZ, module.posZ, module.posX, module.negX));
+                prototypes.Add($"{module.id}_2", new Prototype(module.gameobject, $"{id}_2", 0, module.negX, module.posX, module.negZ, module.posZ));
+                prototypes.Add($"{module.id}_3", new Prototype(module.gameobject, $"{id}_3", 0, module.posZ, module.negZ, module.negX, module.posX));
             }
 
             return prototypes;
@@ -65,6 +65,7 @@ namespace WFC.Data
     [Serializable]
     public class Prototype
     {
+        public readonly GameObject gameobject;
         public readonly string id;
         public readonly int rotation; 
 
@@ -72,17 +73,28 @@ namespace WFC.Data
         //public readonly string posY, negY;
         public readonly string posZ, negZ;
 
-        public List<string> valid_posX, valid_negX;
-        public List<string> valid_posZ, valid_negZ;
+        public List<string> valid_posX = new List<string>(), 
+                            valid_negX = new List<string>(),
+                            valid_posZ = new List<string>(), 
+                            valid_negZ = new List<string>();
 
-        public Prototype(string id, int rotation, string posX, string negX, string posZ, string negZ)
+        public Prototype(GameObject gameobject, string id, int rotation, string posX, string negX, string posZ, string negZ)
         {
+            this.gameobject = gameobject;
             this.id = id;
             this.rotation = rotation;
             this.posX = posX;
             this.negX = negX;
             this.posZ = posZ;
             this.negZ = negZ;
+        }
+
+        public List<string> validNeighbours(Vector2Int direction)
+        {
+            if(direction == Vector2Int.right) { return valid_posX; }
+            else if(direction == Vector2Int.left) { return valid_negX; }
+            else if(direction == Vector2Int.up) { return valid_posZ; }
+            else return valid_negZ;
         }
     }
 

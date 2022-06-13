@@ -6,8 +6,7 @@ namespace WFC
 {
     public static class WaveFunction
     {
-
-        public static Grid PopulateGrid(int sizeX, int sizeZ, PaletteData data)
+        public static Grid CollapseGrid(int sizeX, int sizeZ, PaletteData data)
         {
             Dictionary<string, Prototype> prototypes = data.GetPrototypes();
             CalculateNeighbours(prototypes);
@@ -15,16 +14,29 @@ namespace WFC
             Grid grid = new Grid(sizeX, sizeZ, prototypes);
 
             //Iterative Process
-            Cell minEntropy = GetMinEntropyCell(grid);
-            minEntropy.CollapseCell();
+            while (!FullyCollapsed(grid)) {
 
-            PropagateCollapse(minEntropy.coords, grid);
+                Cell minEntropy = GetMinEntropyCell(grid);
+                minEntropy.CollapseCell();
 
-
+                PropagateCollapse(minEntropy.coords, grid);
+            }
 
 
             return grid;
         }
+
+        static bool FullyCollapsed(Grid grid)
+        {
+            for (int x = 0; x < grid.cells.GetLength(0); x++) {
+                for (int y = 0; y < grid.cells.GetLength(1); y++) {
+                    if(!grid[x, y].collapsed) { return false; }
+                }
+            }
+
+            return true;
+        }
+
 
         static void PropagateCollapse(Vector2Int coords, Grid grid)
         {
@@ -32,8 +44,24 @@ namespace WFC
             stack.Push(coords);
 
             while(stack.Count > 0) {
-                Vector2Int cur_coords = stack.Pop();
+                Vector2Int curCoords = stack.Pop();
 
+                foreach (Vector2Int d in grid.ValidDirections(curCoords)) {
+                    Vector2Int otherCoords = (curCoords + d);
+
+                    var otherPrototypes = grid[otherCoords].available;
+                    var validNeighbours = GetPossibleNeighbours(grid, curCoords, d);
+
+                    if (otherPrototypes.Count == 0) { continue; }
+
+                    foreach (Prototype prototype in otherPrototypes.Values) {
+                        if (!validNeighbours.Contains(prototype.id))
+                            otherPrototypes.Remove(prototype.id);
+
+                        else if(!stack.Contains(otherCoords))
+                            stack.Push(otherCoords);
+                    }
+                }
             }
         }
 
@@ -73,6 +101,18 @@ namespace WFC
                     if (prototype.negZ == _prototype.posZ) { prototype.valid_negZ.Add(_prototype.id); }
                 }
             }
+        }
+
+        static List<string> GetPossibleNeighbours(Grid grid, Vector2Int coords, Vector2Int direction)
+        {
+            List<string> result = new List<string>();
+
+            foreach (Prototype prototype in grid[coords].available.Values) {
+                foreach (string validNeighbour in prototype.validNeighbours(direction)) {
+                    result.Add(validNeighbour);
+                }
+            }
+            return result;
         }
 
 
