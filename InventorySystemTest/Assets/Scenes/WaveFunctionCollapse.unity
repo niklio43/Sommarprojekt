@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca64bbd23a9437341adce3f604287983, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca64bbd23a9437341adce3f604287983, type: 3}
       propertyPath: m_LocalPosition.y
@@ -148,7 +148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca64bbd23a9437341adce3f604287983, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca64bbd23a9437341adce3f604287983, type: 3}
       propertyPath: m_LocalRotation.x
@@ -156,7 +156,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca64bbd23a9437341adce3f604287983, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca64bbd23a9437341adce3f604287983, type: 3}
       propertyPath: m_LocalRotation.z
@@ -168,7 +168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca64bbd23a9437341adce3f604287983, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ca64bbd23a9437341adce3f604287983, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -276,7 +276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ec5edf486e8965f479b3cc4518fef5fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ec5edf486e8965f479b3cc4518fef5fa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -413,7 +413,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1065077159
+--- !u!1 &1295106464
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -421,8 +421,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1065077160}
-  - component: {fileID: 1065077161}
+  - component: {fileID: 1295106466}
+  - component: {fileID: 1295106465}
   m_Layer: 0
   m_Name: Dungeon
   m_TagString: Untagged
@@ -430,27 +430,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1065077160
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065077159}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1065077161
+--- !u!114 &1295106465
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1065077159}
+  m_GameObject: {fileID: 1295106464}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b61baaedb3e2a94691065ea69728cef, type: 3}
@@ -458,6 +444,92 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizeX: 10
   sizeY: 10
+  availablePalettes:
+  - id: 5ec7e086-b3d1-417b-8a89-0462015e2f76
+    name: Do Not Delete
+    modules:
+    - name: Corner
+      gameobject: {fileID: 919132149155446097, guid: ec5edf486e8965f479b3cc4518fef5fa, type: 3}
+      id: 0
+      file_path: Assets/Scripts/Eric/Mesh/Corner.fbx
+      posX: 2s
+      negX: 1s
+      posZ: 1s
+      negZ: 2s
+    - name: Doorway
+      gameobject: {fileID: 919132149155446097, guid: e436d24f10c64d84eaae6e8da0fad92c, type: 3}
+      id: 1
+      file_path: Assets/Scripts/Eric/Mesh/Doorway.fbx
+      posX: 1s
+      negX: 1s
+      posZ: 1s
+      negZ: 3s
+    - name: Floor
+      gameobject: {fileID: 919132149155446097, guid: 5ffeaa9e2b8c69143981a5dd7e8e0d8a, type: 3}
+      id: 2
+      file_path: Assets/Scripts/Eric/Mesh/Floor.fbx
+      posX: 1s
+      negX: 1s
+      posZ: 1s
+      negZ: 1s
+    - name: Wall
+      gameobject: {fileID: 919132149155446097, guid: ca64bbd23a9437341adce3f604287983, type: 3}
+      id: 3
+      file_path: Assets/Scripts/Eric/Mesh/Wall.fbx
+      posX: 2s
+      negX: 1s
+      posZ: 1s
+      negZ: 1s
+  selectedPalette:
+    id: 5ec7e086-b3d1-417b-8a89-0462015e2f76
+    name: Do Not Delete
+    modules:
+    - name: Corner
+      gameobject: {fileID: 919132149155446097, guid: ec5edf486e8965f479b3cc4518fef5fa, type: 3}
+      id: 0
+      file_path: Assets/Scripts/Eric/Mesh/Corner.fbx
+      posX: 2s
+      negX: 1s
+      posZ: 1s
+      negZ: 2s
+    - name: Doorway
+      gameobject: {fileID: 919132149155446097, guid: e436d24f10c64d84eaae6e8da0fad92c, type: 3}
+      id: 1
+      file_path: Assets/Scripts/Eric/Mesh/Doorway.fbx
+      posX: 1s
+      negX: 1s
+      posZ: 1s
+      negZ: 3s
+    - name: Floor
+      gameobject: {fileID: 919132149155446097, guid: 5ffeaa9e2b8c69143981a5dd7e8e0d8a, type: 3}
+      id: 2
+      file_path: Assets/Scripts/Eric/Mesh/Floor.fbx
+      posX: 1s
+      negX: 1s
+      posZ: 1s
+      negZ: 1s
+    - name: Wall
+      gameobject: {fileID: 919132149155446097, guid: ca64bbd23a9437341adce3f604287983, type: 3}
+      id: 3
+      file_path: Assets/Scripts/Eric/Mesh/Wall.fbx
+      posX: 2s
+      negX: 1s
+      posZ: 1s
+      negZ: 1s
+--- !u!4 &1295106466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295106464}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1536205661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -471,7 +543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e436d24f10c64d84eaae6e8da0fad92c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e436d24f10c64d84eaae6e8da0fad92c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -528,7 +600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ffeaa9e2b8c69143981a5dd7e8e0d8a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5ffeaa9e2b8c69143981a5dd7e8e0d8a, type: 3}
       propertyPath: m_LocalPosition.y
