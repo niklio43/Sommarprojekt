@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using WFC.Data;
 
@@ -14,11 +15,12 @@ namespace WFC
             Grid grid = new Grid(sizeX, sizeZ, prototypes);
 
             //Iterative Process
-            while (!FullyCollapsed(grid)) {
-
+            //while (!FullyCollapsed(grid)) {
+            for (int i = 0; i < 10000; i++) {
                 Cell minEntropy = GetMinEntropyCell(grid);
-                Debug.Log(minEntropy.available.Count);
+                //Debug.Log(minEntropy.available.Count);
                 minEntropy.CollapseCell();
+                Debug.Log(grid[minEntropy.coords].available.Count);
 
                 PropagateCollapse(minEntropy.coords, grid);
             }
@@ -49,17 +51,19 @@ namespace WFC
 
                 foreach (Vector2Int d in grid.ValidDirections(curCoords)) {
                     Vector2Int otherCoords = (curCoords + d);
-
+                    Debug.Log(grid[curCoords].available.Count);
                     var otherPrototypes = grid[otherCoords].available;
                     var validNeighbours = GetPossibleNeighbours(grid, curCoords, d);
 
                     if (otherPrototypes.Count == 0) { continue; }
 
-                    foreach (Prototype prototype in otherPrototypes.Values) {
-                        if (!validNeighbours.Contains(prototype.id))
-                            otherPrototypes.Remove(prototype.id);
+                    for (int i = 0; i < otherPrototypes.Count; i++) {
+                        if (!validNeighbours.Contains(otherPrototypes.ElementAt(i).Value.id)) {
+                            otherPrototypes.Remove(otherPrototypes.ElementAt(i).Key);
+                            i--;
+                        }
 
-                        else if(!stack.Contains(otherCoords))
+                        else if (!stack.Contains(otherCoords))
                             stack.Push(otherCoords);
                     }
                 }
@@ -107,7 +111,7 @@ namespace WFC
         static List<string> GetPossibleNeighbours(Grid grid, Vector2Int coords, Vector2Int direction)
         {
             List<string> result = new List<string>();
-
+            Debug.Log(grid[coords].available.Count);
             foreach (Prototype prototype in grid[coords].available.Values) {
                 foreach (string validNeighbour in prototype.validNeighbours(direction)) {
                     result.Add(validNeighbour);
