@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+using WFC.Data;
 
 namespace WFC.Window
 {
@@ -110,8 +111,9 @@ namespace WFC.Window
 
         void Save(SerializedPaletteData data)
         {
-            foreach (Module module in data.data.modules) {
-                module.UpdateData();
+            for (int i = 0; i < data.data.modules.Length; i++) {
+                data.data.modules[i].UpdateData();
+                data.data.modules[i].id = $"{i}"; 
             }
 
             SavePaletteData.SavePalette(data.data);

@@ -1,0 +1,126 @@
+{
+    "name": "ControlsActionMap",
+    "maps": [
+        {
+            "name": "PlayerMovement",
+            "id": "4330bc90-876a-4240-aab0-66a6f923b7dd",
+            "actions": [
+                {
+                    "name": "Forward",
+                    "type": "Button",
+                    "id": "f0aa58b8-ef45-4819-99d8-f6ed38da2317",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Right",
+                    "type": "Button",
+                    "id": "185220d2-37d8-4013-8bc1-75895815caeb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Forward",
+                    "id": "896e15e0-d1c5-4dc9-a6a6-89fb0edfb53c",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Forward",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "5ff6eb36-c280-4b07-bce6-e53d5857278a",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Forward",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "20f7a910-b259-4af2-ab8d-9735a81f1c85",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Forward",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Right",
+                    "id": "7098a02c-75cb-42c1-89c6-aaec78b2b692",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "4c2c8f78-27ba-4e0c-b81d-5b7ba7659ec5",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "1a16e863-1b89-47f3-bf43-cd86f673d341",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "DebugControls",
+            "id": "e54788ef-ea56-4ee7-921d-5ef87db1e8c6",
+            "actions": [
+                {
+                    "name": "CameraToggle",
+                    "type": "Button",
+                    "id": "5e4f5f83-ef18-42d9-a9d2-ac9294d156aa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "eee0fefe-f643-4b48-8d87-d3b8b709cc9a",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
