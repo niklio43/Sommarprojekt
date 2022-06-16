@@ -3,27 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : InputReciever
 {
     Rigidbody rigid;
+    CharacterController controller;
     float moveSpeed = 10f;
     Vector3 forward, right;
-    InputAction rightAction;
-    InputAction forwardAction;
-    public static ControlsActionMap movement;
+    Commands forwardComs = new Commands("Forward", 0);
+    Commands rightComs = new Commands("Right", 0);
 
     private void Awake()
     {
-        movement = new ControlsActionMap();
-        movement.Enable();
-    }
-
-    void Start()
-    {
+        commands.Add(forwardComs);
+        commands.Add(rightComs);
+        commands.Add(new Commands("Right", 0));
+        controller = gameObject?.GetComponent<CharacterController>();
         rigid = GetComponent<Rigidbody>();
-        
-        forwardAction = movement.PlayerMovement.Forward;
-        rightAction = movement.PlayerMovement.Right;
         forward = Camera.main.transform.forward;
         forward.y = 0f;
         forward = Vector3.Normalize(forward);
@@ -41,16 +36,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        Move();
+        Move(rightComs.value, forwardComs.value);
     }
 
-    void Move()
+    public void Move(float rightAction, float forwardAction)
     {
-        Vector3 direction = new Vector3(forwardAction.ReadValue<float>(), 0, rightAction.ReadValue<float>());
-        Vector3 rightMovement = right * moveSpeed * Time.deltaTime * rightAction.ReadValue<float>();
-        Vector3 upMovement = forward * moveSpeed * Time.deltaTime * forwardAction.ReadValue<float>();
+        Vector3 direction = new Vector3(forwardAction, 0, rightAction);
+        Vector3 rightMovement = right * moveSpeed * Time.deltaTime * rightAction;
+        Vector3 upMovement = forward * moveSpeed * Time.deltaTime * forwardAction;
 
         Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
 
