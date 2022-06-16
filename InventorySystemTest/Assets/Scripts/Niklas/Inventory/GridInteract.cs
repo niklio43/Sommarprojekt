@@ -4,12 +4,19 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(ItemGrid))]
 public class GridInteract : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    GameObject Player;
     InventoryController inventoryController;
     ItemGrid itemGrid;
 
-    void Awake()
+    void Start()
     {
-        inventoryController = FindObjectOfType(typeof(InventoryController)) as InventoryController;
+        Player = GameObject.FindGameObjectWithTag("Player");
+
+        foreach (InventoryController i in Player.GetComponent<PlayerInventory>().inventory)
+        {
+            inventoryController = i;
+        }
+
         itemGrid = GetComponent<ItemGrid>();
     }
 

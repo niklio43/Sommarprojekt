@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InventoryController : MonoBehaviour
+[CreateAssetMenu(fileName = "New Inventory Object", menuName = "Inventory System/Inventory")]
+public class InventoryController : ScriptableObject
 {
-    ItemGrid selectedItemGrid;
+    [HideInInspector] public ItemGrid selectedItemGrid;
 
     public ItemGrid SelectedItemGrid
     {
@@ -21,47 +22,13 @@ public class InventoryController : MonoBehaviour
     [Header("Inventory Settings")]
     [SerializeField] List<ItemData> items;
     [SerializeField] GameObject itemPrefab;
-    [SerializeField] Transform canvasTransform;
-    [SerializeField] ItemGrid mainInventory;
-
-    InventoryHighlight InventoryHighlight;
+    [HideInInspector] public Transform canvasTransform;
+    [HideInInspector] public ItemGrid mainInventory;
+    [HideInInspector] public InventoryHighlight InventoryHighlight;
 
     Vector2 oldPosition;
 
-    void Awake()
-    {
-        InventoryHighlight = GetComponent<InventoryHighlight>();
-    }
-
-    void Update()
-    {
-        ItemIconDrag();
-
-        /*IN FUTURE
-         * Change to new input system.
-         */
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            InsertRandomItem();
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            RotateItem();
-        }
-
-        if (selectedItemGrid == null) { InventoryHighlight.Show(false); return; }
-
-        HandleHighlight();
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            LeftMouseButtonPress();
-        }
-    }
-
-    void RotateItem()
+    public void RotateItem()
     {
         if(selectedItem == null) { return; }
 
@@ -91,7 +58,7 @@ public class InventoryController : MonoBehaviour
         mainInventory.PlaceItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
     }
 
-    void HandleHighlight()
+    public void HandleHighlight()
     {
         Vector2Int positionOnGrid = GetTileGridPosition();
 
@@ -138,7 +105,7 @@ public class InventoryController : MonoBehaviour
         inventoryItem.Set(items[selectedItemID]);
     }
 
-    void LeftMouseButtonPress()
+    public void LeftMouseButtonPress()
     {
         Vector2Int tileGridPosition = GetTileGridPosition();
         if (selectedItem == null)
@@ -191,7 +158,7 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    void ItemIconDrag()
+    public void ItemIconDrag()
     {
         if (selectedItem != null)
         {
