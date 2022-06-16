@@ -24,9 +24,16 @@ namespace WFC
         public void CollapseCell()
         {
             int randomIndex = Random.Range(0, available.Count);
+
+            if(available.Count == 0) {
+                occupant = new Prototype();
+                return;
+            }
+
             occupant = available.ElementAt(randomIndex).Value;
 
             available.Clear();
+            available.Add(occupant.id, occupant);
         }
 
     }

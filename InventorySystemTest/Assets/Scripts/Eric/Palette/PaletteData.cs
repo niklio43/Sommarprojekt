@@ -25,10 +25,10 @@ namespace WFC.Data
         {
             Dictionary<string, Prototype> prototypes = new Dictionary<string, Prototype>();
             foreach (ModuleData module in modules) {
-                prototypes.Add($"{module.id}_0", new Prototype(module.gameobject, $"{id}_0", 0, module.posX, module.negX, module.posZ, module.negZ));
-                prototypes.Add($"{module.id}_1", new Prototype(module.gameobject, $"{id}_1", 1, module.negZ, module.posZ, module.posX, module.negX));
-                prototypes.Add($"{module.id}_2", new Prototype(module.gameobject, $"{id}_2", 2, module.negX, module.posX, module.negZ, module.posZ));
-                prototypes.Add($"{module.id}_3", new Prototype(module.gameobject, $"{id}_3", 3, module.posZ, module.negZ, module.negX, module.posX));
+                prototypes.Add($"{module.id}_0", new Prototype(module.gameobject, $"{module.id}_0", 0, module.posX, module.negX, module.posZ, module.negZ));
+                prototypes.Add($"{module.id}_1", new Prototype(module.gameobject, $"{module.id}_1", 1, module.negZ, module.posZ, module.posX, module.negX));
+                prototypes.Add($"{module.id}_2", new Prototype(module.gameobject, $"{module.id}_2", 2, module.negX, module.posX, module.negZ, module.posZ));
+                prototypes.Add($"{module.id}_3", new Prototype(module.gameobject, $"{module.id}_3", 3, module.posZ, module.negZ, module.negX, module.posX));
             }
 
             return prototypes;
@@ -89,6 +89,17 @@ namespace WFC.Data
             this.negZ = negZ;
         }
 
+        public Prototype()
+        {
+            this.gameobject = new GameObject();
+            this.id = "empty";
+            this.rotation = 0;
+            this.posX = "empty";
+            this.negX = "empty";
+            this.posZ = "empty";
+            this.negZ = "empty";
+        }
+
         public List<string> validNeighbours(Vector2Int direction)
         {
             if(direction == Vector2Int.right) { return valid_posX; }
@@ -97,6 +108,7 @@ namespace WFC.Data
             else return valid_negZ;
         }
     }
+
 
     //Serialized Objects
 
