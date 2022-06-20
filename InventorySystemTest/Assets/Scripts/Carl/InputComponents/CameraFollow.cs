@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CameraFollow : InputReciever
+public class CameraFollow : MonoBehaviour
 {
     public GameObject target;
     public static bool following;
@@ -47,13 +47,6 @@ public class CameraFollow : InputReciever
             transform.localPosition = Vector3.Lerp(transform.position, startPos, 10 * Time.deltaTime);
             cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 20f, 10 * Time.deltaTime);
             posReached = false;
-        }
-    }
-    public override void InputHandler(InputAction.CallbackContext action)
-    {
-        if (action.action.name == "CameraToggle")
-        {
-            following = !following;
         }
     }
 }

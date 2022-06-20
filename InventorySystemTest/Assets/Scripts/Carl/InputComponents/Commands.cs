@@ -1,15 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Commands
 {
-    public string name;
-    public float value;
+    public InputAction iAction;
+    public GameObject obj;
 
-    public Commands(string name, float value)
+    public Commands(GameObject obj, InputAction iAction)
     {
-        this.name = name;
-        this.value = value;
+        this.obj = obj;
+        this.iAction = iAction;
     }
 }

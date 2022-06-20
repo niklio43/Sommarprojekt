@@ -9,14 +9,9 @@ public class PlayerController : InputReciever
     CharacterController controller;
     float moveSpeed = 10f;
     Vector3 forward, right;
-    Commands forwardComs = new Commands("Forward", 0);
-    Commands rightComs = new Commands("Right", 0);
 
     private void Awake()
     {
-        commands.Add(forwardComs);
-        commands.Add(rightComs);
-        commands.Add(new Commands("Right", 0));
         controller = gameObject?.GetComponent<CharacterController>();
         rigid = GetComponent<Rigidbody>();
         forward = Camera.main.transform.forward;
@@ -38,18 +33,22 @@ public class PlayerController : InputReciever
 
     private void FixedUpdate()
     {
-        Move(rightComs.value, forwardComs.value);
+        
     }
 
-    public void Move(float rightAction, float forwardAction)
+    public void Move()
     {
-        Vector3 direction = new Vector3(forwardAction, 0, rightAction);
-        Vector3 rightMovement = right * moveSpeed * Time.deltaTime * rightAction;
-        Vector3 upMovement = forward * moveSpeed * Time.deltaTime * forwardAction;
+        Vector3 rightMovement = right * moveSpeed * Time.deltaTime * 1;
+        Vector3 upMovement = forward * moveSpeed * Time.deltaTime * 1;
 
         Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
 
         transform.forward = Vector3.Lerp(transform.forward, heading, 10 * Time.deltaTime);
         transform.position += rightMovement + upMovement;
+    }
+
+    public void Testfunc()
+    {
+        Debug.Log("Funkar");
     }
 }
