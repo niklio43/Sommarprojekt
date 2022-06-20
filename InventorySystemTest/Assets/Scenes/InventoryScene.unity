@@ -250,6 +250,7 @@ GameObject:
   - component: {fileID: 446993526}
   - component: {fileID: 446993525}
   - component: {fileID: 446993524}
+  - component: {fileID: 446993529}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -274,57 +275,6 @@ MonoBehaviour:
   canvas: {fileID: 347974741}
   mainInv: {fileID: 1732641009}
   invHighlight: {fileID: 963194230}
-  clickInventory:
-    m_Name: Click Inventory
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 25dd6a13-dd62-42ce-aafa-6aff231db024
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 5d80a5fd-f2a9-4702-8ba4-aaadb1b44059
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Click Inventory
-      m_Flags: 0
-    m_Flags: 0
-  createRandomItem:
-    m_Name: Create Random Item
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: ea851c3c-6061-4d55-8688-4b8299805163
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 8361b10f-1ce7-4cf5-95d3-16ddd9ddade0
-      m_Path: <Keyboard>/1
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Create Random Item
-      m_Flags: 0
-    m_Flags: 0
-  rotateItem:
-    m_Name: Rotate Item
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 8283141d-1782-478b-8c71-aabd7c37aeb8
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 95ae6681-5914-400d-9c8f-34ee99ac1f04
-      m_Path: <Keyboard>/r
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotate Item
-      m_Flags: 0
-    m_Flags: 0
 --- !u!136 &446993525
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -402,6 +352,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &446993529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446993523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 9dc9779ddecf521409cd28a6a04b0d97, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: PlayerMovement
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &548428524
 GameObject:
   m_ObjectHideFlags: 0

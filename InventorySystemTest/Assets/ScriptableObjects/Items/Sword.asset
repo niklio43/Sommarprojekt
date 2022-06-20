@@ -9,17 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dae75a082fbde6428de5cee65b5401d, type: 3}
-  m_Name: Stamina Potion
+  m_Script: {fileID: 11500000, guid: f7936af98f93c6242970fba3357c19de, type: 3}
+  m_Name: Sword
   m_EditorClassIdentifier: 
-  Id: 0
   width: 1
   height: 2
-  type: 3
-  itemIcon: {fileID: 21300000, guid: 921704fa4d6f05a45999f1bbbf5c9c44, type: 3}
-  description: Stamina Potion
-  buffs:
-  - attribute: 2
-    value: 0
-    min: 50
-    max: 50
+  icon: {fileID: 21300000, guid: beca8ae1f0169154e9e51165354c0528, type: 3}
