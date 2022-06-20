@@ -10,12 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7dae75a082fbde6428de5cee65b5401d, type: 3}
-  m_Name: Stamina Potion
+  m_Name: Chestplate
   m_EditorClassIdentifier: 
   Id: 0
-  width: 1
-  height: 1
-  type: 3
-  itemIcon: {fileID: 0}
-  description: 
-  buffs: []
+  width: 3
+  height: 3
+  type: 0
+  itemIcon: {fileID: 21300000, guid: e976170e4cb1fb14eb0382a74a342c5b, type: 3}
+  description: Chestplate
+  buffs:
+  - attribute: 0
+    value: 0
+    min: 5
+    max: 15

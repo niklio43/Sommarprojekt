@@ -10,12 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7dae75a082fbde6428de5cee65b5401d, type: 3}
-  m_Name: Magic Wand
+  m_Name: Ring
   m_EditorClassIdentifier: 
   Id: 0
   width: 1
   height: 1
-  type: 4
-  itemIcon: {fileID: 0}
-  description: 
-  buffs: []
+  type: 2
+  itemIcon: {fileID: 21300000, guid: 86d4ddc9f739e91478392bdee7b31ed5, type: 3}
+  description: Ring
+  buffs:
+  - attribute: 0
+    value: 0
+    min: 5
+    max: 15

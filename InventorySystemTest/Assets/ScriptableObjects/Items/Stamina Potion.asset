@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7dae75a082fbde6428de5cee65b5401d, type: 3}
-  m_Name: Diamond
+  m_Name: Stamina Potion
   m_EditorClassIdentifier: 
   Id: 0
   width: 1
-  height: 1
-  type: 4
-  itemIcon: {fileID: 21300000, guid: e755f11f1d9e75f478c113eb7f22cf58, type: 3}
-  description: Rare mineral.
+  height: 2
+  type: 3
+  itemIcon: {fileID: 21300000, guid: 921704fa4d6f05a45999f1bbbf5c9c44, type: 3}
+  description: Stamina Potion
   buffs:
-  - attribute: 1
+  - attribute: 2
     value: 0
-    min: 10
-    max: 20
+    min: 50
+    max: 50
