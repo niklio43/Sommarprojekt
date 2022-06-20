@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInventory : MonoBehaviour
+public class PlayerInventory : InputReciever
 {
     public ScriptableObject[] inventory;
     [SerializeField] Transform canvas;
     [SerializeField] ItemGrid mainInv;
     [SerializeField] InventoryHighlight invHighlight;
 
-    void Start()
+    void Awake()
     {
-        foreach(InventoryController i in inventory)
+        foreach (InventoryController i in inventory)
         {
             i.canvasTransform = canvas;
             i.mainInventory = mainInv;
@@ -25,28 +25,18 @@ public class PlayerInventory : MonoBehaviour
         {
             i.ItemIconDrag();
 
-            /*IN FUTURE
-             * Change to new input system.
-             */
-
-            if (Input.GetKeyDown(KeyCode.W))
-            {
+            if(Input.GetKeyDown(KeyCode.W))
                 i.InsertRandomItem();
-            }
 
-            if (Input.GetKeyDown(KeyCode.R))
-            {
+            if(Input.GetKeyDown(KeyCode.Mouse0))
+                i.LeftMouseButtonPress();
+
+            if(Input.GetKeyDown(KeyCode.R))
                 i.RotateItem();
-            }
 
             if (i.selectedItemGrid == null) { invHighlight.Show(false); return; }
 
             i.HandleHighlight();
-
-            if (Input.GetMouseButtonDown(0))
-            {
-                i.LeftMouseButtonPress();
-            }
         }
     }
 }

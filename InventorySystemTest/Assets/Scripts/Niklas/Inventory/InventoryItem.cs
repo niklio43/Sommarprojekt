@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour
 {
-    public ItemData itemData;
+    public Item itemData;
 
     public int HEIGHT
     {
@@ -33,11 +33,11 @@ public class InventoryItem : MonoBehaviour
 
     public bool rotated = false;
 
-    internal void Set(ItemData itemData)
+    internal void Set(Item itemData)
     {
         this.itemData = itemData;
 
-        GetComponent<Image>().sprite = itemData.itemIcon;
+        GetComponent<Image>().sprite = itemData.ItemIcon;
 
         Vector2 size = new Vector2();
         size.x = itemData.width * ItemGrid.tileSizeWidth;

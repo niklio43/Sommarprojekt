@@ -20,7 +20,7 @@ public class InventoryController : ScriptableObject
     RectTransform rectTransform;
 
     [Header("Inventory Settings")]
-    [SerializeField] List<ItemData> items;
+    [SerializeField] List<Item> items;
     [SerializeField] GameObject itemPrefab;
     [HideInInspector] public Transform canvasTransform;
     [HideInInspector] public ItemGrid mainInventory;
