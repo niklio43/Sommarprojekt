@@ -121,7 +121,7 @@ public class InventoryController : ScriptableObject
 
     Vector2Int GetTileGridPosition()
     {
-        Vector2 position = mainInventory.mousePosition;
+        Vector2 position = Input.mousePosition;
 
         if (selectedItem != null)
         {
@@ -163,7 +163,7 @@ public class InventoryController : ScriptableObject
     {
         if (selectedItem != null)
         {
-            rectTransform.position = mainInventory.mousePosition;
+            rectTransform.position = Input.mousePosition;
         }
     }
 }

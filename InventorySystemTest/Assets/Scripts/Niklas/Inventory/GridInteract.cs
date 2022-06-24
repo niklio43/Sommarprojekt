@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 public class GridInteract : InputReciever
 {
     GameObject Player;
-    InventoryController inventoryController;
     ItemGrid itemGrid;
 
     public override void Start()
@@ -16,30 +15,31 @@ public class GridInteract : InputReciever
 
         Player = GameObject.FindGameObjectWithTag("Player");
 
-        foreach (InventoryController i in Player.GetComponent<PlayerInventory>().inventory)
-        {
-            inventoryController = i;
-        }
-
         itemGrid = GetComponent<ItemGrid>();
     }
 
     void MouseUpdate(InputAction.CallbackContext ctx)
     {
-        itemGrid.mousePosition = ctx.ReadValue<Vector2>();
-        if (!GetComponent<ItemGrid>().inventoryBounds.Contains(itemGrid.mousePosition)) { MouseExit(); return; }
+        var playerInv = Player.GetComponent<PlayerInventory>();
+        playerInv.mousePos = ctx.ReadValue<Vector2>();
+        if (!itemGrid.inventoryBounds.Contains(playerInv.mousePos)) { MouseExit(); return; }
         MouseEnter();
     }
 
     void MouseEnter()
     {
-        inventoryController.SelectedItemGrid = itemGrid;
-        itemGrid.gameObject.transform.SetAsFirstSibling();
-        Debug.Log("Enter");
+        foreach (InventoryController i in Player.GetComponent<PlayerInventory>().inventory)
+        {
+            i.SelectedItemGrid = itemGrid;
+            itemGrid.gameObject.transform.SetAsFirstSibling();
+        }
     }
 
     void MouseExit()
-    {
-        inventoryController.SelectedItemGrid = null;
+    {//sumn weird
+        foreach (InventoryController i in Player.GetComponent<PlayerInventory>().inventory)
+        {
+            i.SelectedItemGrid = null;
+        }
     }
 }

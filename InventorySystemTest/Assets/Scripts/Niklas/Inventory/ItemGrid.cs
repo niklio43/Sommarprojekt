@@ -7,8 +7,6 @@ public class ItemGrid : MonoBehaviour
 
     [HideInInspector] public Bounds inventoryBounds;
 
-    [HideInInspector] public Vector2 mousePosition;
-
     InventoryItem[,] inventoryItemSlot;
 
     [SerializeField] int gridSizeWidth = 20, gridSizeHeight = 10;
@@ -18,9 +16,14 @@ public class ItemGrid : MonoBehaviour
     Vector2 positionOnTheGrid = new Vector2();
     Vector2Int tileGridPosition = new Vector2Int();
 
+    float scaleFactor;
+
     void Start()
     {
         rectTransform = GetComponent<RectTransform>();
+        scaleFactor = gameObject.transform.parent.gameObject.GetComponent<Canvas>().scaleFactor;
+        var size = rectTransform.sizeDelta * scaleFactor;
+        inventoryBounds = new Bounds(new Vector2(rectTransform.position.x + (size.x / 2), rectTransform.position.y - (size.y / 2)), size);
         Init(gridSizeWidth, gridSizeHeight);
     }
 
@@ -56,13 +59,10 @@ public class ItemGrid : MonoBehaviour
         inventoryItemSlot = new InventoryItem[width, heigth];
         Vector2 size = new Vector2(width * tileSizeWidth, heigth * tileSizeHeight);
         rectTransform.sizeDelta = size;
-
-        inventoryBounds = new Bounds(new Vector2(rectTransform.position.x + (rectTransform.sizeDelta.x / 4), rectTransform.position.y - (rectTransform.sizeDelta.y / 4)), rectTransform.sizeDelta / 2);
     }
 
     public Vector2Int GetTileGridPosition(Vector2 mousePosition)
     {
-        float scaleFactor = gameObject.transform.parent.gameObject.GetComponent<Canvas>().scaleFactor;
         positionOnTheGrid.x = mousePosition.x - rectTransform.position.x;
         positionOnTheGrid.y = rectTransform.position.y - mousePosition.y;
 
