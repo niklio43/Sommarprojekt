@@ -13,5 +13,13 @@ MonoBehaviour:
   m_Name: Tileset
   m_EditorClassIdentifier: 
   name: Default
+  StartRoom: {fileID: 5672148942410645797, guid: 1a2838aa0ae64e846844a8e40e6afd83, type: 3}
+  EndRoom: {fileID: 5672148942410645797, guid: 1a2838aa0ae64e846844a8e40e6afd83, type: 3}
   tiles:
-  - {fileID: 59481254036952207, guid: eafe0f73b267c1f4dacde4eb4103c351, type: 3}
+  - {fileID: 5660077078713168006, guid: d56745c211ae0e848870f3b04c4d92ad, type: 3}
+  - {fileID: 1979634123820990061, guid: eafe0f73b267c1f4dacde4eb4103c351, type: 3}
+  - {fileID: 2043914154777667105, guid: 999ab94f87fb9f14abf1a138427044bc, type: 3}
+  - {fileID: 3213535719826380091, guid: a6920152aee206b49b460f35ac4703da, type: 3}
+  - {fileID: 2237686488947352609, guid: ea594d3e64838e040a5fa4bdb38b2107, type: 3}
+  - {fileID: 6061878105177747291, guid: 1d74bc8c5d04d27479ef24c4233a3b06, type: 3}
+  - {fileID: 3270303884802208337, guid: 66a3920d98733ab4c9b0b888077a85fa, type: 3}
