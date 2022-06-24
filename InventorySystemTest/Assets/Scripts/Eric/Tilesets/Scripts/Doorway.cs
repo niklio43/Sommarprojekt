@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Doorway : MonoBehaviour
 {
-    public bool isConnected { get { return (connectedRoom != null); } }
+    public bool CannotBeBlocked = false;
+    public bool isConnected { get { return (connectedDoor != null); } }
 
     public GameObject blocker;
-    GameObject connectedRoom;
+    public Doorway connectedDoor;
 
 
     public void RemoveDoorway()
