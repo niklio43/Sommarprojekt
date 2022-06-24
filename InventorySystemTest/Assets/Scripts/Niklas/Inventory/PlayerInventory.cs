@@ -9,10 +9,14 @@ public class PlayerInventory : InputReciever
     [SerializeField] ItemGrid mainInv;
     [SerializeField] InventoryHighlight invHighlight;
 
-    void Awake()
+    public override void Start()
     {
-        foreach (InventoryController i in inventory)
+        base.Start();
+        foreach(InventoryController i in inventory)
         {
+            CreateCommand(gameObject, InputManager.Instance.createRandomItem, i.InsertRandomItem);
+            CreateCommand(gameObject, InputManager.Instance.clickInventory, i.LeftMouseButtonPress);
+            CreateCommand(gameObject, InputManager.Instance.rotateItem, i.RotateItem);
             i.canvasTransform = canvas;
             i.mainInventory = mainInv;
             i.InventoryHighlight = invHighlight;
@@ -24,15 +28,6 @@ public class PlayerInventory : InputReciever
         foreach (InventoryController i in inventory)
         {
             i.ItemIconDrag();
-
-            if(Input.GetKeyDown(KeyCode.W))
-                i.InsertRandomItem();
-
-            if(Input.GetKeyDown(KeyCode.Mouse0))
-                i.LeftMouseButtonPress();
-
-            if(Input.GetKeyDown(KeyCode.R))
-                i.RotateItem();
 
             if (i.selectedItemGrid == null) { invHighlight.Show(false); return; }
 

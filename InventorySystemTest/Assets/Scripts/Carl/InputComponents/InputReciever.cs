@@ -6,31 +6,25 @@ using UnityEngine.InputSystem;
 
 public abstract class InputReciever : MonoBehaviour
 {
-    public Dictionary<Commands, Action> interactions = new Dictionary<Commands, Action>();
-    public Dictionary<InputAction, Commands> recievers = new Dictionary<InputAction, Commands>();
+    public Dictionary<Commands, Action<InputAction.CallbackContext>> interactions = new Dictionary<Commands, Action<InputAction.CallbackContext>>();
+    public Dictionary<string, Commands> recievers = new Dictionary<string, Commands>();
     public Commands newCom;
 
     public virtual void Start()
     {
-        InputManager.input += InputHandler;
-        CreateCommand(this.gameObject, InputManager.Instance.forwardAction, CoolTest);
-
+        InputManager.input += ctx => InputHandler(ctx);
     }
 
-    public virtual void InputHandler(InputAction action)
+    public virtual void InputHandler(InputAction.CallbackContext ctx)
     {
-        interactions[recievers[action]].Invoke();
+        if (!recievers.ContainsKey(ctx.action.name)) { return; }
+        interactions[recievers[ctx.action.name]].Invoke(ctx);
     }
 
-    public void CreateCommand(GameObject obj, InputAction input, Action act)
+    public void CreateCommand(GameObject obj, InputAction input, Action<InputAction.CallbackContext> act)
     {
         newCom = new Commands(obj, input);
         interactions.Add(newCom, act);
-        recievers.Add(input, newCom);
-    }
-
-    public void CoolTest()
-    {
-        Debug.Log("Funkar");
+        recievers.Add(input.name, newCom);
     }
 }

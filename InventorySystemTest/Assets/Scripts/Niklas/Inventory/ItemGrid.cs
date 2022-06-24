@@ -5,6 +5,10 @@ public class ItemGrid : MonoBehaviour
     public const float tileSizeWidth = 64;
     public const float tileSizeHeight = 64;
 
+    [HideInInspector] public Bounds inventoryBounds;
+
+    [HideInInspector] public Vector2 mousePosition;
+
     InventoryItem[,] inventoryItemSlot;
 
     [SerializeField] int gridSizeWidth = 20, gridSizeHeight = 10;
@@ -52,6 +56,8 @@ public class ItemGrid : MonoBehaviour
         inventoryItemSlot = new InventoryItem[width, heigth];
         Vector2 size = new Vector2(width * tileSizeWidth, heigth * tileSizeHeight);
         rectTransform.sizeDelta = size;
+
+        inventoryBounds = new Bounds(new Vector2(rectTransform.position.x + (rectTransform.sizeDelta.x / 4), rectTransform.position.y - (rectTransform.sizeDelta.y / 4)), rectTransform.sizeDelta / 2);
     }
 
     public Vector2Int GetTileGridPosition(Vector2 mousePosition)

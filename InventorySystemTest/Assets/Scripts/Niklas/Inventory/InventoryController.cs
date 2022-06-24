@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "New Inventory Object", menuName = "Inventory System/Inventory")]
 public class InventoryController : ScriptableObject
@@ -28,7 +29,7 @@ public class InventoryController : ScriptableObject
 
     Vector2 oldPosition;
 
-    public void RotateItem()
+    public void RotateItem(InputAction.CallbackContext ctx)
     {
         if(selectedItem == null) { return; }
 
@@ -37,7 +38,7 @@ public class InventoryController : ScriptableObject
 
     //Make so item is dropped on ground first
     //Call when random item drop is wanted
-    public void InsertRandomItem()
+    public void InsertRandomItem(InputAction.CallbackContext ctx)
     {
         CreateRandomItem();
         InventoryItem itemToInsert = selectedItem;
@@ -105,7 +106,7 @@ public class InventoryController : ScriptableObject
         inventoryItem.Set(items[selectedItemID]);
     }
 
-    public void LeftMouseButtonPress()
+    public void LeftMouseButtonPress(InputAction.CallbackContext ctx)
     {
         Vector2Int tileGridPosition = GetTileGridPosition();
         if (selectedItem == null)
@@ -120,7 +121,7 @@ public class InventoryController : ScriptableObject
 
     Vector2Int GetTileGridPosition()
     {
-        Vector2 position = Input.mousePosition;
+        Vector2 position = mainInventory.mousePosition;
 
         if (selectedItem != null)
         {
@@ -162,7 +163,7 @@ public class InventoryController : ScriptableObject
     {
         if (selectedItem != null)
         {
-            rectTransform.position = Input.mousePosition;
+            rectTransform.position = mainInventory.mousePosition;
         }
     }
 }

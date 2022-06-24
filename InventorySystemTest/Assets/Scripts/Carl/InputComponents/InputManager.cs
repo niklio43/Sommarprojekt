@@ -8,14 +8,12 @@ public class InputManager : MonoBehaviour
     private static InputManager _instance;
     public static InputManager Instance { get { return _instance; } }
 
-    ControlsActionMap movement;
-    public InputAction rightAction;
-    public InputAction forwardAction;
-    public InputAction cameraToggle;
-    public delegate void Inputs(InputAction action);
+    ControlsActionMap controls;
+    public InputAction rightAction, forwardAction, cameraToggle, createRandomItem, toggleInventory, rotateItem, clickInventory, mousePosition;
+    public delegate void Inputs(InputAction.CallbackContext ctx);
     public static Inputs input;
 
-    private void Awake()
+    void Awake()
     {
         if (_instance != null && _instance != this)
         {
@@ -25,25 +23,35 @@ public class InputManager : MonoBehaviour
         {
             _instance = this;
         }
-        movement = new ControlsActionMap();
-        movement.Enable();
-        forwardAction = movement.PlayerMovement.Forward;
+        controls = new ControlsActionMap();
+        controls.Enable();
+        forwardAction = controls.PlayerMovement.Forward;
+        BindInputs();
     }
 
-    private void Start()
+    void BindInputs()
     {
-        rightAction = movement.PlayerMovement.Right;
-        cameraToggle = movement.DebugControls.CameraToggle;
+        rightAction = controls.PlayerMovement.Right;
+        cameraToggle = controls.DebugControls.CameraToggle;
+        createRandomItem = controls.DebugControls.CreateRandomItem;
+        toggleInventory = controls.Inventory.ToggleInventory;
+        rotateItem = controls.Inventory.RotateItem;
+        clickInventory = controls.Inventory.ClickInventory;
+        mousePosition = controls.Inventory.MousePosition;
 
         forwardAction.started += InputSender;
         forwardAction.canceled += InputSender;
         rightAction.started += InputSender;
         rightAction.canceled += InputSender;
+        mousePosition.performed += InputSender;
         cameraToggle.performed += InputSender;
+        createRandomItem.performed += InputSender;
+        rotateItem.performed += InputSender;
+        clickInventory.performed += InputSender;
     }
 
-    private void InputSender(InputAction.CallbackContext ctx)
+    void InputSender(InputAction.CallbackContext ctx)
     {
-       input(forwardAction);
+       input(ctx);
     }
 }
