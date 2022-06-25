@@ -6,6 +6,8 @@ using UnityEngine;
 public class Shield : OffHand
 {
     [SerializeField] Sprite icon;
+    [SerializeField] List<string> possiblePrefixes;
+    [SerializeField] List<string> possibleSuffixes;
 
     void Awake()
     {
@@ -13,5 +15,7 @@ public class Shield : OffHand
         width = 2;
         height = 2;
         ItemIcon = icon;
+        Prefix = possiblePrefixes[Random.Range(0, possiblePrefixes.Count)];
+        Suffix = possibleSuffixes[Random.Range(0, possibleSuffixes.Count)];
     }
 }

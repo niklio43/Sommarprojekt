@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Accessories
   m_EditorClassIdentifier: 
   selectedItemGrid: {fileID: 0}
-  items:
+  possibleItems:
   - {fileID: 11400000, guid: a1d445aea37d2224f8ac22fd5ffb6b32, type: 2}
+  - {fileID: 11400000, guid: f2d64d956f7e3db499aaad51a8a1279e, type: 2}
+  heldItems: []
   itemPrefab: {fileID: 7144153771729610586, guid: c67d19515fddb3e4687b2a6771b4cf42, type: 3}
   canvasTransform: {fileID: 0}
   mainInventory: {fileID: 0}

@@ -21,7 +21,8 @@ public class InventoryController : ScriptableObject
     RectTransform rectTransform;
 
     [Header("Inventory Settings")]
-    [SerializeField] List<Item> items;
+    [SerializeField] List<Item> possibleItems;
+    public List<ScriptableObject> heldItems;
     [SerializeField] GameObject itemPrefab;
     [HideInInspector] public Transform canvasTransform;
     [HideInInspector] public ItemGrid mainInventory;
@@ -61,6 +62,8 @@ public class InventoryController : ScriptableObject
 
     public void HandleHighlight()
     {
+        if (!selectedItemGrid.inventoryBounds.Contains(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().mousePos)) { return; }
+
         Vector2Int positionOnGrid = GetTileGridPosition();
 
         if(oldPosition == positionOnGrid) { return; }
@@ -94,20 +97,34 @@ public class InventoryController : ScriptableObject
         /*IN FUTURE
          * Change so random item is created from a specific pool of items recieved from the slain target enemy.
          * Check if there is enough grids for items to be created here.
+         * fix so scriptable objects is created and stored correctly.
          */
+        int selectedItemID = Random.Range(0, possibleItems.Count);
+
+        ScriptableObject newItem = Instantiate(possibleItems[selectedItemID]);
+
+        string fullItemName = possibleItems[selectedItemID].Prefix + " " + newItem.name + " " + possibleItems[selectedItemID].Suffix;
+
+        UnityEditor.AssetDatabase.CreateAsset(newItem, "Assets/ScriptableObjects/" + fullItemName + ".asset");
+
+        heldItems.Add(newItem);
+
         InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
+
+        inventoryItem.name = fullItemName;
+
         selectedItem = inventoryItem;
         rectTransform = inventoryItem.GetComponent<RectTransform>();
         rectTransform.SetParent(canvasTransform);
         rectTransform.SetAsLastSibling();
 
-        int selectedItemID = Random.Range(0, items.Count);
-
-        inventoryItem.Set(items[selectedItemID]);
+        inventoryItem.Set(possibleItems[selectedItemID]);
     }
 
     public void LeftMouseButtonPress(InputAction.CallbackContext ctx)
     {
+        if (!selectedItemGrid.inventoryBounds.Contains(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().mousePos)) { return; }
+
         Vector2Int tileGridPosition = GetTileGridPosition();
         if (selectedItem == null)
         {

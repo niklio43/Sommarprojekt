@@ -22,7 +22,7 @@ public class GridInteract : InputReciever
     {
         var playerInv = Player.GetComponent<PlayerInventory>();
         playerInv.mousePos = ctx.ReadValue<Vector2>();
-        if (!itemGrid.inventoryBounds.Contains(playerInv.mousePos)) { MouseExit(); return; }
+        if (!itemGrid.inventoryBounds.Contains(playerInv.mousePos)) { return; }
         MouseEnter();
     }
 
@@ -32,14 +32,6 @@ public class GridInteract : InputReciever
         {
             i.SelectedItemGrid = itemGrid;
             itemGrid.gameObject.transform.SetAsFirstSibling();
-        }
-    }
-
-    void MouseExit()
-    {//sumn weird
-        foreach (InventoryController i in Player.GetComponent<PlayerInventory>().inventory)
-        {
-            i.SelectedItemGrid = null;
         }
     }
 }

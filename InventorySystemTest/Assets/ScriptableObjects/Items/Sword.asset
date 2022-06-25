@@ -15,3 +15,9 @@ MonoBehaviour:
   width: 1
   height: 2
   icon: {fileID: 21300000, guid: beca8ae1f0169154e9e51165354c0528, type: 3}
+  possiblePrefixes:
+  - Legendary
+  - Mythic
+  possibleSuffixes:
+  - Of Fire
+  - Of Ice
