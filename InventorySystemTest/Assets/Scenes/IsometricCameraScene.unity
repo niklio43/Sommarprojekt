@@ -247,7 +247,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c932e3af993919498b30912523ffc2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 2116287234}
+  rightAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  forwardAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  cameraToggle:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!4 &187304567
 Transform:
   m_ObjectHideFlags: 0

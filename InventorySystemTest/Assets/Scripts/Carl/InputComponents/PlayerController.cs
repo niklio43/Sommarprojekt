@@ -7,8 +7,9 @@ public class PlayerController : InputReciever
 {
     Rigidbody rigid;
     CharacterController controller;
-    float moveSpeed = 10f;
+    float moveSpeed = 50f;
     Vector3 forward, right;
+    Vector3 rightMovement, upMovement;
 
     private void Awake()
     {
@@ -18,6 +19,8 @@ public class PlayerController : InputReciever
         forward.y = 0f;
         forward = Vector3.Normalize(forward);
         right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
+        CreateCommand(this.gameObject, InputManager.Instance.forwardAction, ForwardMove);
+        CreateCommand(this.gameObject, InputManager.Instance.rightAction, RightMove);
     }
 
     void Update()
@@ -33,22 +36,23 @@ public class PlayerController : InputReciever
 
     private void FixedUpdate()
     {
-        
+        DoMove();
     }
 
-    public void Move()
+    public void ForwardMove(InputAction.CallbackContext ctx)
     {
-        Vector3 rightMovement = right * moveSpeed * Time.deltaTime * 1;
-        Vector3 upMovement = forward * moveSpeed * Time.deltaTime * 1;
+        upMovement = forward * moveSpeed * Time.deltaTime * ctx.ReadValue<float>();
+    }
 
+    public void RightMove(InputAction.CallbackContext ctx)
+    {
+        rightMovement = right * moveSpeed * Time.deltaTime * ctx.ReadValue<float>();
+    }
+
+    public void DoMove()
+    {
         Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
-
-        transform.forward = Vector3.Lerp(transform.forward, heading, 10 * Time.deltaTime);
+        transform.forward = Vector3.Lerp(transform.forward, heading, 10 * Time.fixedDeltaTime);
         transform.position += rightMovement + upMovement;
-    }
-
-    public void Testfunc()
-    {
-        Debug.Log("Funkar");
     }
 }
